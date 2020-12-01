@@ -9,6 +9,8 @@
 /dist
 /tags
 *.mo
+app/Plugin/DebugKit/
+app/Vendor
 
 # IDE and editor specific files #
 #################################
