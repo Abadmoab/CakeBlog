@@ -33,4 +33,25 @@ class UsersController extends AppController
 			$this->Flash->error('Registeration failed.');
 		}
 	}
+
+	public function beforeFilter()
+	{
+		parent::beforeFilter();
+		$this->Auth->allow('add', 'logout');
+	}
+
+	public function login()
+	{
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				return $this->redirect($this->Auth->redirectUrl());
+			}
+			$this->Flash->error('Username or Password incorrect!');
+		}
+	}
+
+	public function logout()
+	{
+		return $this->redirect($this->Auth->logout());
+	}
 }
