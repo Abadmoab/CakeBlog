@@ -15,7 +15,7 @@ class PostsController extends AppController
 			throw new NotFoundException('Invalid post.');
 		}
 
-		$this->set('post', $post);
+		$this->set(compact('post'));
 	}
 
 	public function add()
