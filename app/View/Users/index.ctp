@@ -1,8 +1,26 @@
+<h1>Blog Groups</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Group Name</th>
+	</tr>
+	<?php foreach ($groups as $id => $name): ?>
+	<tr>
+		<td><?php echo $id ?></td>
+		<td><?php echo $name ?></td>
+	</tr>
+	<?php endforeach; ?>
+    <?php unset($group); ?>
+</table>
+
+<hr>
+<hr>
+<hr>
+
 <?php echo $this->Html->link(
     'Add User',
     array('controller' => 'users', 'action' => 'add')
 ); ?>
-
 <h1>Blog Users</h1>
 <table>
     <tr>

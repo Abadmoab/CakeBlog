@@ -25,7 +25,13 @@ class UsersController extends AppController
 				)
 			)
 		));
+		$this->loadModel('Group');
+		$groups = $this->Group->find('list', array(
+			'recursive' => -1,
+			'fields' => array('Group.id', 'Group.name'),
+			'conditions' => array('Group.deleted = 0')
+		));
 
-		$this->set(compact('users'));
+		$this->set(compact('users', 'groups'));
 	}
 }
