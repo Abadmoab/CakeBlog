@@ -17,4 +17,16 @@ class PostsController extends AppController
 
 		$this->set('post', $post);
 	}
+
+	public function add()
+	{
+		if ($this->request->is('post')) {
+			$this->Post->create();
+			if ($this->Post->save($this->request->data)) {
+				return $this->redirect(['action' => 'index']);
+			} else {
+				throw new BadRequestException('Unable to add a new post');
+			}
+		}
+	}
 }
