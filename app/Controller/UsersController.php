@@ -12,4 +12,13 @@ class UsersController extends AppController
 
 		$this->set(compact('users', 'groups'));
 	}
+
+	public function deleted()
+	{
+		$this->loadModel('Group');
+		$groups = $this->Group->get(1);
+		$users = $this->User->get(1);
+
+		$this->set(compact('users', 'groups'));
+	}
 }
