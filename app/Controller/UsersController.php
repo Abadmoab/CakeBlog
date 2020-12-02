@@ -6,31 +6,9 @@ class UsersController extends AppController
 
 	public function index()
 	{
-		$users = $this->User->find('all', array(
-			'recursive' => -1,
-			'fields' => array('User.id', 'User.username', 'User.full_name', 'User.created', 'Role.name', 'Group.name'),
-			'conditions' => array('User.deleted' => 0),
-			'joins' => array(
-				array(
-					'table' => 'roles',
-					'alias' => 'Role',
-					'type' => 'inner',
-					'conditions' => array('User.role_id = Role.id')
-				),
-				array(
-					'table' => 'groups',
-					'alias' => 'Group',
-					'type' => 'inner',
-					'conditions' => array('User.group_id = Group.id')
-				)
-			)
-		));
 		$this->loadModel('Group');
-		$groups = $this->Group->find('list', array(
-			'recursive' => -1,
-			'fields' => array('Group.id', 'Group.name'),
-			'conditions' => array('Group.deleted = 0')
-		));
+		$groups = $this->Group->get(0);
+		$users = $this->User->get(0);
 
 		$this->set(compact('users', 'groups'));
 	}
