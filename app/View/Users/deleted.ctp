@@ -1,3 +1,7 @@
+<?php echo $this->Html->link(
+    '<< BACK TO INDEX',
+    array('controller' => 'users', 'action' => 'index')
+); ?>
 <h1>Blog Groups</h1>
 <table>
     <tr>

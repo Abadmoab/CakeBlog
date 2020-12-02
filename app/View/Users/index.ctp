@@ -1,3 +1,7 @@
+<?php echo $this->Html->link(
+    'SHOW DELETED USERS AND GROUPS',
+    array('controller' => 'users', 'action' => 'deleted')
+); ?>
 <h1>Blog Groups</h1>
 <table>
     <tr>
