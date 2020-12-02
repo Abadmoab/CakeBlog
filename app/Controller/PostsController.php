@@ -22,12 +22,17 @@ class PostsController extends AppController
 	{
 		if ($this->request->is('post')) {
 			$this->Post->create();
+			$this->request->data['Post']['user_id'] = $this->Auth->user('id');
 			if ($this->Post->save($this->request->data)) {
 				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error('Unable to create a Post.');
 			}
 		}
+
+		$this->loadModel('Group');
+		$groups = $this->Group->get(0);
+		$this->set(compact('groups'));
 	}
 
 	public function edit($post = null)
