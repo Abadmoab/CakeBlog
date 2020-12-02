@@ -8,7 +8,8 @@
     <tr>
         <th>Id</th>
         <th>Title</th>
-        <th>Created</th>
+		<th>Created</th>
+		<th>Acions</th>
     </tr>
 
     <?php foreach ($posts as $post): ?>
@@ -23,7 +24,8 @@
                  ]);
              ?>
         </td>
-        <td><?php echo $post['Post']['created']; ?></td>
+		<td><?php echo $post['Post']['created']; ?></td>
+		<td><?php echo $this->Html->link('Edit', ['controller' => 'posts', 'action' => 'edit', $post['Post']['id']]) ?></td>
     </tr>
     <?php endforeach; ?>
     <?php unset($post); ?>
