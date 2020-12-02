@@ -33,6 +33,7 @@
 		<th>Full Name</th>
 		<th>Main Role</th>
 		<th>Main Group</th>
+		<th># of Posts</th>
 		<th>Created</th>
 		<th>Acions</th>
 	</tr>
@@ -51,6 +52,7 @@
 		<td><?php echo $user['User']['full_name'] ?></td>
 		<td><?php echo $user['Role']['name']; ?></td>
 		<td><?php echo $user['Group']['name']; ?></td>
+		<td><?php echo $user['User']['posts_count']; ?></td>
 		<td><?php echo $user['User']['created']; ?></td>
 		<td>
 			<?php echo $this->Html->link('Edit', ['controller' => 'users', 'action' => 'edit', $user['User']['id']]) ?> ,
