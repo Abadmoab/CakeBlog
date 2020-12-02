@@ -25,7 +25,10 @@
              ?>
         </td>
 		<td><?php echo $post['Post']['created']; ?></td>
-		<td><?php echo $this->Html->link('Edit', ['controller' => 'posts', 'action' => 'edit', $post['Post']['id']]) ?></td>
+		<td>
+			<?php echo $this->Html->link('Edit', ['controller' => 'posts', 'action' => 'edit', $post['Post']['id']]) ?> ,
+			<?php echo $this->Html->link('Delete', ['controller' => 'posts', 'action' => 'delete', $post['Post']['id']]) ?>
+		</td>
     </tr>
     <?php endforeach; ?>
     <?php unset($post); ?>

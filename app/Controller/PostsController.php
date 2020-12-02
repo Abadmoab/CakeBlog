@@ -49,4 +49,18 @@ class PostsController extends AppController
 			$this->request->data = $post;
 		}
 	}
+
+	public function delete($post = null)
+	{
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		if ($this->Post->delete($post)) {
+			$this->Flash->success('The post was deleted successfully.');
+		} else {
+			$this->Flash->error('The post could not be deleted.');
+		}
+
+		return $this->redirect(array('action' => 'index'));
+	}
 }
