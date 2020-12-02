@@ -25,7 +25,7 @@ class PostsController extends AppController
 			if ($this->Post->save($this->request->data)) {
 				return $this->redirect(['action' => 'index']);
 			} else {
-				throw new BadRequestException('Unable to add a new post');
+				$this->Flash->error('Unable to create a Post.');
 			}
 		}
 	}
