@@ -4,6 +4,12 @@ class UsersController extends AppController
 {
 	public $helpers = array('Html', 'Form');
 
+	public function beforeFilter()
+	{
+		parent::beforeFilter();
+		$this->Auth->allow('add', 'logout');
+	}
+
 	public function index()
 	{
 		$this->loadModel('Group');
@@ -34,12 +40,6 @@ class UsersController extends AppController
 		}
 	}
 
-	public function beforeFilter()
-	{
-		parent::beforeFilter();
-		$this->Auth->allow('add', 'logout');
-	}
-
 	public function login()
 	{
 		if ($this->request->is('post')) {
@@ -53,5 +53,25 @@ class UsersController extends AppController
 	public function logout()
 	{
 		return $this->redirect($this->Auth->logout());
+	}
+
+	public function edit($user = null)
+	{
+		if (!$user = $this->User->findById($user)) {
+			throw new NotFoundException('User not found.');
+		}
+
+		if ($this->request->is(array('post', 'put'))) {
+			$this->User->id = $user['User']['id'];
+			if ($this->User->save($this->request->data)) {
+				$this->Flash->success('User was updated successfully.');
+				return $this->redirect(array('action' => 'index'));
+			}
+			$this->Flash->error('Unable to update user.');
+		}
+
+		if (!$this->request->data) {
+			$this->request->data = $user;
+		}
 	}
 }
