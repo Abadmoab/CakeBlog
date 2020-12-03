@@ -74,4 +74,19 @@ class UsersController extends AppController
 			$this->request->data = $user;
 		}
 	}
+
+	public function delete($user = null)
+	{
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException('GET method not allowed for this route.');
+		}
+
+		if (!$this->User->delete($user)) {
+			$this->Flash->success('User was deleted successfully.');
+		} else {
+			$this->Flash->error('Unable to delete user.');
+		}
+
+		return $this->redirect(array('action' => 'index'));
+	}
 }
